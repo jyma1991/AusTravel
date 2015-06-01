@@ -1,4 +1,4 @@
-﻿namespace travel
+﻿namespace AusTravel
 {
     partial class RbPdfProcess : Microsoft.Office.Tools.Ribbon.RibbonBase
     {
@@ -9,7 +9,7 @@
         private System.ComponentModel.IContainer components = null;
 
         public RbPdfProcess()
-            : base(travel.Globals.Factory.GetRibbonFactory())
+            : base(AusTravel.Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
         }

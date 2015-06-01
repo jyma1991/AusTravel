@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace travel.Util
+namespace AusTravel.Util
 {
     class CairnsTravel
     {

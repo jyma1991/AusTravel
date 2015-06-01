@@ -7,14 +7,14 @@ using Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using travel.Util;
+using AusTravel.Util;
 using System.Text.RegularExpressions;
 using System.Data;
 using System.Data.OleDb;
 using pdf;
 using System.Collections;
 
-namespace travel
+namespace AusTravel
 {
     public partial class RbPdfProcess
     {       
@@ -359,7 +359,7 @@ namespace travel
         /// <param name="iLine"></param>
         private void GetQuoteAndPrice(SortedList<DateTime, string> ICainsTravel, int iLine)
         {
-            Worksheet workSheet = (Worksheet)travel.Globals.ThisWorkbook.ActiveSheet;
+            Worksheet workSheet = (Worksheet)AusTravel.Globals.ThisWorkbook.ActiveSheet;
             Dictionary<string, int> dicprice = GetPriceList();
             int dt =  0;
             for (int i = 0; i < ICainsTravel.Keys.Count; i++)
@@ -505,7 +505,7 @@ namespace travel
         private void btnCreate_Click(object sender, RibbonControlEventArgs e)
         {
             //当前工作表
-            Worksheet workSheet = (Worksheet)travel.Globals.ThisWorkbook.ActiveSheet;
+            Worksheet workSheet = (Worksheet)AusTravel.Globals.ThisWorkbook.ActiveSheet;
             workSheet.UsedRange.Clear();//清空工作表
 
             workSheet.Name = "报价单"+workSheet.Index;
@@ -543,7 +543,7 @@ namespace travel
         }
         void InsertRow(int index)
         {
-            Worksheet workSheet = (Worksheet)travel.Globals.ThisWorkbook.ActiveSheet;
+            Worksheet workSheet = (Worksheet)AusTravel.Globals.ThisWorkbook.ActiveSheet;
             Microsoft.Office.Interop.Excel.Range row = (Microsoft.Office.Interop.Excel.Range)workSheet.Rows[index, Type.Missing];
             row.EntireRow.Insert(Microsoft.Office.Interop.Excel.XlDirection.xlDown, Microsoft.Office.Interop.Excel.XlInsertFormatOrigin.xlFormatFromLeftOrAbove);
             rowfix += 1;
@@ -551,7 +551,7 @@ namespace travel
 
         void InsertCol(int index)
         {
-            Worksheet workSheet = (Worksheet)travel.Globals.ThisWorkbook.ActiveSheet;
+            Worksheet workSheet = (Worksheet)AusTravel.Globals.ThisWorkbook.ActiveSheet;
             Microsoft.Office.Interop.Excel.Range col = (Microsoft.Office.Interop.Excel.Range)workSheet.Columns[index, Type.Missing];
             col.EntireColumn.Insert(Microsoft.Office.Interop.Excel.XlDirection.xlToRight, Microsoft.Office.Interop.Excel.XlInsertFormatOrigin.xlFormatFromLeftOrAbove);
         }
@@ -564,7 +564,7 @@ namespace travel
         {
             try
             {
-                Worksheet workSheet = (Worksheet)travel.Globals.ThisWorkbook.ActiveSheet;
+                Worksheet workSheet = (Worksheet)AusTravel.Globals.ThisWorkbook.ActiveSheet;
                 for (int i = 0; i < count; i++)
                 {
                     Range range = (Range)workSheet.Rows[rowIndex, Type.Missing];
@@ -588,7 +588,7 @@ namespace travel
         {
             try
             {
-                Worksheet workSheet = (Worksheet)travel.Globals.ThisWorkbook.ActiveSheet;
+                Worksheet workSheet = (Worksheet)AusTravel.Globals.ThisWorkbook.ActiveSheet;
                 for (int i = columnIndex + count - 1; i >= columnIndex; i--)
                 {
                     ((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[1, i]).EntireColumn.Delete(0);
@@ -609,7 +609,7 @@ namespace travel
         {
             try
             {
-                Worksheet workSheet = (Worksheet)travel.Globals.ThisWorkbook.ActiveSheet;
+                Worksheet workSheet = (Worksheet)AusTravel.Globals.ThisWorkbook.ActiveSheet;
                 Range range1 = (Microsoft.Office.Interop.Excel.Range)workSheet.Rows[rowIndex];
                 for (int i = 1; i <= count; i++)
                 {
@@ -632,7 +632,7 @@ namespace travel
         {
             try
             {
-                Worksheet workSheet = (Worksheet)travel.Globals.ThisWorkbook.ActiveSheet;
+                Worksheet workSheet = (Worksheet)AusTravel.Globals.ThisWorkbook.ActiveSheet;
                 workSheet.Cells[rowIndex, columnIndex] = text;
             }
             catch
@@ -694,12 +694,12 @@ namespace travel
             saveDialog.Filter = "Pdf文件|*.pdf";
       //      Worksheet workSheet = (Worksheet)travel.Globals.ThisWorkbook.ActiveSheet;
             if (DialogResult.OK != saveDialog.ShowDialog()) return; //被点了取消
-            travel.Globals.ThisWorkbook.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, saveDialog.FileName);
+            AusTravel.Globals.ThisWorkbook.ExportAsFixedFormat(XlFixedFormatType.xlTypePDF, saveDialog.FileName);
         }
 
         private void btnInsertCount_Click(object sender, RibbonControlEventArgs e)
         {
-            Range range = (Range)travel.Globals.ThisWorkbook.Application.Selection;
+            Range range = (Range)AusTravel.Globals.ThisWorkbook.Application.Selection;
             foreach (Range item in range)
             {
                  item.Value = mdConfig.DicConfig["PTC"]["DISC"];

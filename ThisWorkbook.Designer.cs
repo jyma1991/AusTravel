@@ -9,7 +9,8 @@
 //------------------------------------------------------------------------------
 
 #pragma warning disable 414
-namespace travel {
+namespace AusTravel
+{
     
     
     /// 
