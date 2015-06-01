@@ -376,7 +376,7 @@ namespace AusTravel
                      NoteStyle(workSheet, "H" + (iLine+1), "H" + (iLine+1), "15.00%", false, 10);
                      NoteStyle(workSheet, "F" + (iLine + 1), "F" + (iLine + 1), dicprice[dt.ToString()].ToString(), false, 10);
                      NoteStyle(workSheet, "D" + (iLine+1), "E" + (iLine+1), dt.ToString() + "Hours  " + Vehicle.ToString() + "seater", false, 10);
-                     NoteStyle(workSheet, "D" + (iLine + 2), "E" + (iLine + 2), "McDonald's", false, 10);
+                     //NoteStyle(workSheet, "D" + (iLine + 2), "E" + (iLine + 2), "McDonald's", false, 10);
                      NoteStyle(workSheet, "G" + (iLine + 2), "G" + (iLine + 2), numOfPeople.ToString(), false, 10);
                 }
                 else if (ICainsTravel.Values[i].Contains("Hotel Breakfast"))
@@ -385,7 +385,7 @@ namespace AusTravel
                     NoteStyle(workSheet, "H" + (iLine + 1), "H" + (iLine + 1), "15.00%", false, 10);
                     NoteStyle(workSheet, "F" + (iLine + 1), "F" + (iLine + 1), dicprice[dt.ToString()].ToString(), false, 10);
                     NoteStyle(workSheet, "D" + (iLine+1), "E" + (iLine+1), dt.ToString() + "Hours  " + Vehicle.ToString() + "seater", false, 10);
-                    NoteStyle(workSheet, "D" + (iLine + 2), "E" + (iLine + 2), "McDonald's", false, 10);
+                    //NoteStyle(workSheet, "D" + (iLine + 2), "E" + (iLine + 2), "McDonald's", false, 10);
                     NoteStyle(workSheet, "G" + (iLine + 2), "G" + (iLine + 2), numOfPeople.ToString(), false, 10);
                 }
 
@@ -445,8 +445,17 @@ namespace AusTravel
 
         private string GetStringFromFile(string filePath)
         {
-            PdfReader pdf = new PdfReader();
-            return strPdfInfo =pdf.getString(filePath);
+            try
+            {
+                PdfReader pdf = new PdfReader();
+                return strPdfInfo = pdf.getString(filePath);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("不支持该行程单，请检查行程单格式是否正确！");
+                throw;
+            }
+            
         }
 
         private void RbPdfProcess_Load(object sender, RibbonUIEventArgs e)
